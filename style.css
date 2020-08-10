@@ -1,0 +1,9 @@
+body,html {
+    position: absolute;
+    margin: 0;
+    background: black;
+    overflow: hidden;
+}
+video {
+    -webkit-app-region: drag;
+}

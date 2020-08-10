@@ -1,30 +1,37 @@
 
-const {app, BrowserWindow} = require('electron')
+const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 
+let mainWindow;
+
+app.disableHardwareAcceleration();
+
 function createWindow () {
-    // Create the browser window.
-    const mainWindow = new BrowserWindow({
+
+    mainWindow = new BrowserWindow({
         width: 800,
         height: 600,
+        resizable: false,
+        maximizable: false,
         webPreferences: {
             preload: path.join(__dirname, 'preload.js')
-        }
+        },
+        frame: false
     })
 
-    // and load the index.html of the app.
     mainWindow.loadFile('index.html')
-
-    // Open the DevTools.
-    // mainWindow.webContents.openDevTools()
 }
+
+ipcMain.on('videoSize', (event, msg) => {
+    console.log(msg)
+    mainWindow.setSize(msg.width, msg.height);
+})
 
 app.whenReady().then(() => {
     createWindow()
 
     app.on('activate', function () {
-        // On macOS it's common to re-create a window in the app when the
-        // dock icon is clicked and there are no other windows open.
+
         if (BrowserWindow.getAllWindows().length === 0) createWindow()
     })
 })

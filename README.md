@@ -1,4 +1,5 @@
-webcam-viewer
+Webcam Viewer
+==========================
 
 This is just for personal use for streams and stuff, as I didn't want to have to fiddle with other sources and most streaming apps and other things, seemed to be paid. So I am just using obs window capture for this and then https://obsproject.com/forum/resources/obs-virtualcam.949/ for streaming back to applications that don't natively support any specific cameras.
 
